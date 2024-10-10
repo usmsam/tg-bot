@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_telegram_bot_api_1 = __importDefault(require("node-telegram-bot-api"));
+console.log('Bot is live! )');
 // Типизируйте ваш токен
 const token = '7214643228:AAGNIkLhtbV1CRs3knTNn52XcJQydmqWotU';
 // Создайте экземпляр бота, используя типы

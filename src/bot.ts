@@ -1,4 +1,5 @@
 import TelegramBot, { Message } from 'node-telegram-bot-api'
+console.log('Bot is live! )')
 
 // Типизируйте ваш токен
 const token: string = '7214643228:AAGNIkLhtbV1CRs3knTNn52XcJQydmqWotU'
