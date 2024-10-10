@@ -33,6 +33,25 @@ app.post('/webhook', (req, res) => {
 	// Отправляем ответ Telegram
 	res.sendStatus(200)
 })
+app.post('/', (req, res) => {
+	const update = req.body
+
+	// Проверка наличия сообщения
+	if (update.message) {
+		const chatId = update.message.chat.id
+		const text = update.message.text
+
+		// Обработка команды /start
+		if (text === '/start') {
+			bot.sendMessage(chatId, 'Добро пожаловать! Я бот на Express с вебхуком.')
+		} else {
+			bot.sendMessage(chatId, `Вы написали: ${text}`)
+		}
+	}
+
+	// Отправляем ответ Telegram
+	res.sendStatus(200)
+})
 
 // Запуск сервера
 app.listen(PORT, () => {
