@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"main": "bot.js",
 	"scripts": {
-		"start": "npx ts-node bot.ts"
+		"start": "node bot.js"
 	},
 	"keywords": [],
 	"author": "",
