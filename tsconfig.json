@@ -9,7 +9,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/bot.ts"
+    "bot.ts"
   ], // Указываем путь к TypeScript файлам
   "exclude": [
     "node_modules"
