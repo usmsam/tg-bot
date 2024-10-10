@@ -11,7 +11,7 @@ const token = '7214643228:AAFiUCOeloGJawNnDuzHxgqZ2K-eMHIvhZw'
 const bot = new TelegramBot(token)
 
 // Укажите URL для вебхука
-const webhookUrl = 'https://tg-bot-gules.vercel.app/'
+const webhookUrl = 'https://tg-bot-gules.vercel.app/api/bot'
 
 // Установите вебхук
 bot.setWebHook(webhookUrl).then(() => {
@@ -19,7 +19,7 @@ bot.setWebHook(webhookUrl).then(() => {
 })
 
 // Обработка входящих обновлений от Telegram
-app.post('/', (req, res) => {
+app.post('/api/bot', (req, res) => {
 	bot.sendMessage(chatId, JSON.stringify(req.body))
 	const update = req.body // Получите данные обновления
 	bot.processUpdate(update) // Обработайте обновление
