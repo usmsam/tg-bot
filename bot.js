@@ -11,15 +11,16 @@ const token = '7214643228:AAFiUCOeloGJawNnDuzHxgqZ2K-eMHIvhZw'
 const bot = new TelegramBot(token)
 
 // Укажите URL для вебхука
-const webhookUrl = 'tg-bot-gules.vercel.app/api/bot'
+const webhookUrl = 'https://tg-bot-gules.vercel.app/'
 
 // Установите вебхук
 bot.setWebHook(webhookUrl).then(() => {
-	console.log('Webhook установлен на ' + webhookUrl)
+	bot.sendMessage(chatId, 'Webhook установлен на ' + webhookUrl)
 })
 
 // Обработка входящих обновлений от Telegram
-app.post('/api/bot', (req, res) => {
+app.post('/', (req, res) => {
+	bot.sendMessage(chatId, JSON.stringify(req.body))
 	const update = req.body // Получите данные обновления
 	bot.processUpdate(update) // Обработайте обновление
 	res.sendStatus(200) // Верните статус 200 OK
@@ -43,5 +44,5 @@ bot.on('message', msg => {
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-	console.log(`Сервер запущен на порту ${PORT}`)
+	bot.sendMessage(chatId, `Сервер запущен на порту ${PORT}`)
 })
