@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000
 app.use(express.json())
 
 // Обработка вебхука
-app.post('/webhook', (req, res) => {
+app.post('/api/webhook', (req, res) => {
 	const update = req.body
 
 	// Проверка наличия сообщения
