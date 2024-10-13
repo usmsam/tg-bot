@@ -1,4 +1,3 @@
-// index.js
 const express = require('express')
 const TelegramBot = require('node-telegram-bot-api')
 
@@ -12,8 +11,7 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
-// Обработка вебхука
-app.post('/api/webhook', (req, res) => {
+app.post('/', (req, res) => {
 	const update = req.body
 	console.log(req.body)
 	if (update.message) {
@@ -30,7 +28,6 @@ app.post('/api/webhook', (req, res) => {
 	res.sendStatus(200)
 })
 
-// Запуск сервера
 app.listen(PORT, () => {
 	console.log(`Сервер запущен на http://localhost:${PORT}`)
 })
