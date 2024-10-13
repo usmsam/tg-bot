@@ -1,32 +1,31 @@
-const express = require('express')
-const TelegramBot = require('node-telegram-bot-api')
+const express = require('express');
+const TelegramBot = require('node-telegram-bot-api');
 
 // Замените 'YOUR_TELEGRAM_BOT_TOKEN' на токен вашего бота
-const token = '7214643228:AAFiUCOeloGJawNnDuzHxgqZ2K-eMHIvhZw'
-const bot = new TelegramBot(token)
+const token = 'YOUR_TELEGRAM_BOT_TOKEN';
+const bot = new TelegramBot(token, { polling: true }); // Включаем опрос
 
 // Создание Express приложения
-const app = express()
-const PORT = process.env.PORT || 8080
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(express.json())
+// Middleware для обработки JSON
+app.use(express.json());
 
-app.post('/', (req, res) => {
-	const update = req.body
-	console.log(req.body)
-	if (update.message) {
-		const chatId = update.message.chat.id
-		const text = update.message.text
+// Обработка сообщений
+bot.on('message', (msg) => {
+	const chatId = msg.chat.id;
+	const text = msg.text;
 
-		if (text === '/start') {
-			bot.sendMessage(chatId, 'Добро пожаловать! Я бот на Express с вебхуком.')
-		} else {
-			bot.sendMessage(chatId, `Вы написали: ${text}`)
-		}
+	// Обработка команды /start
+	if (text === '/start') {
+		bot.sendMessage(chatId, 'Добро пожаловать! Я бот на Express с опросом.');
+	} else {
+		bot.sendMessage(chatId, `Вы написали: ${text}`);
 	}
-	res.sendStatus(200)
-})
+});
 
+// Запуск сервера
 app.listen(PORT, () => {
-	console.log(`Сервер запущен на http://localhost:${PORT}`)
-})
+	console.log(`Сервер запущен на http://localhost:${PORT}`);
+});
