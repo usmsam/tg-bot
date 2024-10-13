@@ -10,46 +10,23 @@ const bot = new TelegramBot(token)
 const app = express()
 const PORT = process.env.PORT || 3000
 
-// Middleware для обработки JSON
 app.use(express.json())
 
 // Обработка вебхука
 app.post('/api/webhook', (req, res) => {
 	const update = req.body
-
-	// Проверка наличия сообщения
+	console.log(req.body)
 	if (update.message) {
 		const chatId = update.message.chat.id
 		const text = update.message.text
 
-		// Обработка команды /start
 		if (text === '/start') {
 			bot.sendMessage(chatId, 'Добро пожаловать! Я бот на Express с вебхуком.')
 		} else {
 			bot.sendMessage(chatId, `Вы написали: ${text}`)
 		}
 	}
-
-	// Отправляем ответ Telegram
-	res.sendStatus(200)
-})
-app.post('/', (req, res) => {
-	const update = req.body
-
-	// Проверка наличия сообщения
-	if (update.message) {
-		const chatId = update.message.chat.id
-		const text = update.message.text
-
-		// Обработка команды /start
-		if (text === '/start') {
-			bot.sendMessage(chatId, 'Добро пожаловать! Я бот на Express с вебхуком.')
-		} else {
-			bot.sendMessage(chatId, `Вы написали: ${text}`)
-		}
-	}
-
-	// Отправляем ответ Telegram
+	bot.sendMessage(chatId, `Вы написали`)
 	res.sendStatus(200)
 })
 
