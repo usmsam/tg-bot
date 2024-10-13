@@ -7,7 +7,7 @@ const bot = new TelegramBot(token)
 
 // Создание Express приложения
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 
 app.use(express.json())
 
@@ -24,7 +24,6 @@ app.post('/', (req, res) => {
 			bot.sendMessage(chatId, `Вы написали: ${text}`)
 		}
 	}
-	bot.sendMessage(chatId, `Вы написали`)
 	res.sendStatus(200)
 })
 
